@@ -430,13 +430,13 @@ typing_extensions = ">=4.9.0,<5.0.0"
 
 [[package]]
 name = "langchain-cli"
-version = "0.0.22"
+version = "0.0.23"
 description = "CLI for interacting with LangChain"
 optional = false
 python-versions = "<4.0,>=3.8.1"
 files = [
-    {file = "langchain_cli-0.0.22-py3-none-any.whl", hash = "sha256:5fed3d22d4472420a3e85af9c01f70171041d64a18c2541eb7f075296ab30200"},
-    {file = "langchain_cli-0.0.22.tar.gz", hash = "sha256:ce6d5ef1967c2e6739bb1416334fefa3e4b3388d8f947c8f1420b441138628a3"},
+    {file = "langchain_cli-0.0.23-py3-none-any.whl", hash = "sha256:43bf2ec23d6e8baea5396c04b2969ed67bc7ed65cb5149df0a1d8a2620791227"},
+    {file = "langchain_cli-0.0.23.tar.gz", hash = "sha256:93eabc2693f5cdac47895027ffe1072e56647d6db42aa9b0fe601db46238df5d"},
 ]
 
 [package.dependencies]
