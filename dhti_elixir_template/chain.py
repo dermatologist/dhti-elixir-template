@@ -1,5 +1,3 @@
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
 from kink import di
 
 _prompt = di["main_prompt"]
