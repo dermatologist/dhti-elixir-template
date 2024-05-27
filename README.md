@@ -2,6 +2,13 @@
 
 TODO: What does this package do
 
+## Using the template
+* Use the template to create a new repository on GitHub with the default branch set to develop
+* Clone the repository to your local machine
+* rename elixir-template to your elixir-pacagename
+* rename elixir_template to your elixir_packagename
+* rename the directory dhti_elixir_template to your dhti_elixir_packagename
+
 ## Environment Setup
 
 TODO: What environment variables need to be set (if any)
@@ -33,9 +40,9 @@ from dhti_elixir_template import chain as dhti_elixir_template_chain
 add_routes(app, dhti_elixir_template_chain, path="/dhti-elixir-template")
 ```
 
-(Optional) Let's now configure LangSmith. 
-LangSmith will help us trace, monitor and debug LangChain applications. 
-You can sign up for LangSmith [here](https://smith.langchain.com/). 
+(Optional) Let's now configure LangSmith.
+LangSmith will help us trace, monitor and debug LangChain applications.
+You can sign up for LangSmith [here](https://smith.langchain.com/).
 If you don't have access, you can skip this section
 
 
@@ -51,11 +58,11 @@ If you are inside this directory, then you can spin up a LangServe instance dire
 langchain serve
 ```
 
-This will start the FastAPI app with a server is running locally at 
+This will start the FastAPI app with a server is running locally at
 [http://localhost:8000](http://localhost:8000)
 
 We can see all templates at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-We can access the playground at [http://127.0.0.1:8000/dhti-elixir-template/playground](http://127.0.0.1:8000/dhti-elixir-template/playground)  
+We can access the playground at [http://127.0.0.1:8000/dhti-elixir-template/playground](http://127.0.0.1:8000/dhti-elixir-template/playground)
 
 We can access the template from code with:
 
