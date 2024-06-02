@@ -11,7 +11,9 @@ langchain-core = ">=0.1.5"
 kink = "^0.8.0"
 pytest = "^8.2.1"
 python-dotenv = "^1.0.1"
-
+Sphinx = { version = "4.2.0", optional = true }
+sphinx-rtd-theme = { version = "1.0.0", optional = true }
+sphinxcontrib-napoleon = { version = "0.7", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.4"
@@ -21,6 +23,10 @@ sse-starlette = "^1.6.5"
 [tool.langserve]
 export_module = "dhti_elixir_template"
 export_attr = "chain"
+
+
+[tool.poetry.extras]
+docs = ["Sphinx", "sphinx-rtd-theme", "sphinxcontrib-napoleon"]
 
 [build-system]
 requires = ["poetry-core"]
