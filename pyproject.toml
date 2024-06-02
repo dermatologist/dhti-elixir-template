@@ -19,7 +19,7 @@ recommonmark = { version = "0.7.1", optional = true }
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.4"
 fastapi = "^0.104.0"
-sse-starlette = "^1.6.5"
+sse-starlette = "^2.1.0"
 
 [tool.langserve]
 export_module = "dhti_elixir_template"
