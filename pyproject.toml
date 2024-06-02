@@ -18,7 +18,7 @@ recommonmark = { version = "0.7.1", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.4"
-fastapi = "^0.104.0"
+fastapi = "^0.110.3"
 sse-starlette = "^1.6.5"
 
 [tool.langserve]
