@@ -1,7 +1,6 @@
-from kink import di
-
-_prompt = di["main_prompt"]
-_llm = di["main_llm"]
+from dhti_elixir_base import get_di
+_prompt = get_di("template_main_prompt")
+_llm = get_di("template_main_llm")
 
 
 # if you update this, you MUST also update ../pyproject.toml
