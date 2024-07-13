@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9.0,<4.0"
-dhti_elixir_base = { git = "https://github.com/dermatologist/dhti-elixir-base.git", branch = "develop" }
+dhti-elixir-base = { git = "https://github.com/dermatologist/dhti-elixir-base.git", branch = "develop" }
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.4"
