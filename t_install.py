@@ -1,13 +1,15 @@
+import requests
+from dhti_elixir_template.bootstrap import bootstrap
+bootstrap()
 from dhti_elixir_template.chain import chain
-from dhti_elixir_base import get_di
 
 
-_prompt = get_di("template_main_prompt")
-_llm = get_di("template_main_llm")
-
-
-# if you update this, you MUST also update ../pyproject.toml
-# with the new `tool.langserve.export_attr`
-chain = _prompt | _llm
-
-assert chain is not None
+try:
+    input = {
+        "input": "Answer in one word: What is the capital of France?"
+    }
+    result = chain.invoke(input = input)
+    assert result == 'Paris'
+except (requests.exceptions.ConnectionError) as e:
+    print("ConnectionError: Skipping test")
+    assert True
