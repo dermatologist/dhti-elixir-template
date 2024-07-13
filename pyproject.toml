@@ -13,6 +13,7 @@ dhti-elixir-base = { git = "https://github.com/dermatologist/dhti-elixir-base.gi
 langchain-cli = ">=0.0.4"
 fastapi = "^0.104.0"
 sse-starlette = "^1.6.5"
+tox-poetry = "^0.5.0"
 
 [tool.langserve]
 export_module = "dhti_elixir_template"
