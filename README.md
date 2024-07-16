@@ -15,7 +15,7 @@ WIP
 
 ## Environment Setup
 
-Override [dhti_elixir_template/bootstrap.py]() with your own configuration.
+Override [`dhti_elixir_template/bootstrap.py`](dhti_elixir_template/bootstrap.py) with your own configuration.
 
 ## Usage
 
