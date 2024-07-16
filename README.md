@@ -1,6 +1,6 @@
 # dhti-elixir-template
 
-TODO: What does this package do
+WIP
 
 ## Using the template
 * Use the template to create a new repository on GitHub with the default branch set to develop
@@ -15,7 +15,7 @@ TODO: What does this package do
 
 ## Environment Setup
 
-TODO: What environment variables need to be added to bootstrap (if any)
+Override [dhti_elixir_template/bootstrap.py]() with your own configuration.
 
 ## Usage
 
@@ -33,7 +33,9 @@ langchain app add --repo https://github.com/dermatologist/dhti-elixir-template -
 
 And add the following code to your `server.py` file:
 ```python
-from dhti_elixir_template import chain as dhti_elixir_template_chain
+from dhti_elixir_template.bootstrap import bootstrap
+bootstrap()
+from dhti_elixir_template.chain import chain as dhti_elixir_template_chain
 
 add_routes(app, dhti_elixir_template_chain, path="/dhti-elixir-template")
 ```

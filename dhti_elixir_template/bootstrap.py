@@ -5,5 +5,5 @@ from langchain_core.prompts import PromptTemplate
 
 def bootstrap():
     load_dotenv()
-    di["main_prompt"] = PromptTemplate.from_template("{input}")
+    di["main_prompt"] = PromptTemplate.from_template("Summarize the following in 100 words: {input}")
     di["main_llm"] = Ollama(model="phi3:mini", verbose=True, base_url="http://ollama:11434")
