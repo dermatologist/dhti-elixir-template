@@ -1,6 +1,7 @@
 # dhti-elixir-template
 
-WIP
+* [DHTI](https://github.com/dermatologist/dhti) Elixir Template
+* WIP
 
 ## Using the template
 * Use the template to create a new repository on GitHub with the default branch set to develop
