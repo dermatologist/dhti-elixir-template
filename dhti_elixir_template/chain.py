@@ -23,12 +23,13 @@ class RagChain(BaseChain):
         return chain
 
 # Named chain according to the langchain template convention
+# The description is used by the agents
 @tool(RagChain().name, args_schema=RagChain().input_type)
 def chain(**kwargs):
     """
-    Description of what this chain does for agents.
+    This is a template chain that takes a text input and returns a summary of the text.
 
     The input is a dict with the following mandatory keys:
-        input (str): The question to ask based on the available context from the patient's health record.
+        input (str): The text to summarize.
     """
     return RagChain().chain.invoke(kwargs)
