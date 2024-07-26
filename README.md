@@ -6,9 +6,9 @@
 ## Using the template
 * Use the template to create a new repository on GitHub with the default branch set to develop
 * Clone the repository to your local machine
-* rename elixir-template to your elixir-packagename
-* rename elixir_template to your elixir_packagename
-* rename the directory dhti_elixir_template to your dhti_elixir_packagename
+* rename `elixir-template` to your elixir-packagename
+* rename `elixir_template` to your elixir_packagename
+* rename the directory `dhti_elixir_template` to your dhti_elixir_packagename
 
 ## Installation
 * poetry install
