@@ -1,28 +1,9 @@
-[tool.poetry]
-name = "dhti-elixir-template"
-version = "0.0.1"
-description = "DHTI Elixir Template"
-authors = ["DHTI"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.9.0,<4.0"
-dhti-elixir-base = { git = "https://github.com/dermatologist/dhti-elixir-base.git", branch = "develop" }
-
-[tool.poetry.group.dev.dependencies]
-langchain-cli = ">=0.0.4"
-fastapi = "^0.104.0"
-sse-starlette = "^1.6.5"
-tox-poetry = "^0.5.0"
-
-[tool.langserve]
-export_module = "dhti_elixir_template"
-export_attr = "chain"
-
-
-[tool.poetry.extras]
-docs = ["Sphinx", "sphinx-rtd-theme", "sphinxcontrib-napoleon", "recommonmark"]
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+# AVOID CHANGING REQUIRES: IT WILL BE UPDATED BY PYSCAFFOLD!
+requires = ["setuptools>=46.1.0", "setuptools_scm[toml]>=5"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+# For smarter version schemes and other configuration options,
+# check out https://github.com/pypa/setuptools_scm
+version_scheme = "no-guess-dev"
