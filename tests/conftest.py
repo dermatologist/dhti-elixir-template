@@ -1,4 +1,4 @@
-from src.dhti_elixir_template.bootstrap import bootstrap
+from .bootstrap import bootstrap
 
 
 def pytest_configure(config):

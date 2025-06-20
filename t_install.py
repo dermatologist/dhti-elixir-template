@@ -1,5 +1,5 @@
 import requests
-from dhti_elixir_template.bootstrap import bootstrap
+from tests.bootstrap import bootstrap
 bootstrap()
 from dhti_elixir_template.chain import chain
 
