@@ -1,2 +1,2 @@
-from dhti_elixir_template.chain import chain
+from .chain import chain
 __all__ = ["chain"]

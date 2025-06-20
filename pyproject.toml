@@ -1,17 +1,20 @@
 [build-system]
-requires = ["setuptools>=61.2"]
+requires = ["setuptools", "wheel", "pip"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dhti-elixir-template"
 description = "DHTI Elixir Template"
 authors = [{name = "dermatologist", email = "github@gulfdoctor.net"}]
-license = {text = "MPL-2.0"}
+license = "MPL-2.0"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
 ]
-dependencies = ['importlib-metadata; python_version<"3.8"']
+dependencies = [
+    'importlib-metadata; python_version<"3.8"',
+    'dhti-elixir-base@ git+https://github.com/dermatologist/dhti-elixir-base',
+]
 dynamic = ["version"]
 
 [project.readme]
