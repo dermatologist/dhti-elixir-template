@@ -8,15 +8,14 @@
 * Clone the repository to your local machine
 * rename `elixir-template` to your elixir-packagename
 * rename `elixir_template` to your elixir_packagename
-* rename the directory `dhti_elixir_template` to your dhti_elixir_packagename
+* rename the directory `src/dhti_elixir_template` to your `src/dhti_elixir_packagename`
 
 ## Installation
-* poetry install
-* poetry install dhti-elixir-packagename --extras docs
+* pip install -e .[dev]
 
-## Environment Setup
+## Testing Environment Setup
 
-Override [`dhti_elixir_template/bootstrap.py`](dhti_elixir_template/bootstrap.py) with your own configuration.
+Override [`tests/bootstrap.py`](tests/bootstrap.py) with your own configuration.
 
 ## Usage
 
@@ -32,10 +31,9 @@ If you want to add this to an existing project, you can just run:
 langchain app add --repo https://github.com/dermatologist/dhti-elixir-template --branch develop
 ```
 
-And add the following code to your `server.py` file:
+And add the following code to your `server.py` file after [bootstrapping](tests/bootstrap.py):
 ```python
-from dhti_elixir_template.bootstrap import bootstrap
-bootstrap()
+
 from dhti_elixir_template.chain import chain as dhti_elixir_template_chain
 
 add_routes(app, dhti_elixir_template_chain, path="/dhti-elixir-template")
