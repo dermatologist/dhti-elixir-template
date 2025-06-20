@@ -4,8 +4,8 @@ import requests
 
 @pytest.fixture
 def chain():
-    from src.dhti_elixir_template.chain import chain
-    return chain
+    from src.dhti_elixir_template import TestChain
+    return TestChain().chain
 
 def test_chain(chain):
     try:

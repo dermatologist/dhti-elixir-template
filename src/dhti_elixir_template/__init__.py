@@ -1,2 +1,2 @@
-from .chain import chain
-__all__ = ["chain"]
+from .chain import TestChain
+__all__ = ["TestChain"]
