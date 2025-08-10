@@ -1,60 +1,74 @@
 # dhti-elixir-template
 
-* [DHTI](https://github.com/dermatologist/dhti) Elixir Template
-* WIP
+[![Release](https://img.shields.io/github/v/release/dermatologist/dhti-elixir-template)](https://img.shields.io/github/v/release/dermatologist/dhti-elixir-template)
+[![Build status](https://img.shields.io/github/actions/workflow/status/dermatologist/dhti-elixir-template/main.yml?branch=main)](https://github.com/dermatologist/dhti-elixir-template/actions/workflows/main.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/gh/dermatologist/dhti-elixir-template/branch/main/graph/badge.svg)](https://codecov.io/gh/dermatologist/dhti-elixir-template)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/dermatologist/dhti-elixir-template)](https://img.shields.io/github/commit-activity/m/dermatologist/dhti-elixir-template)
+[![License](https://img.shields.io/github/license/dermatologist/dhti-elixir-template)](https://img.shields.io/github/license/dermatologist/dhti-elixir-template)
 
-## Using the template
-* Use the template to create a new repository on GitHub with the default branch set to develop
-* Clone the repository to your local machine
-* rename `elixir-template` to your elixir-packagename
-* rename `elixir_template` to your elixir_packagename
-* rename the directory `src/dhti_elixir_template` to your `src/dhti_elixir_packagename`
+This is a template repository for Python projects that use uv for their dependency management.
 
-## Installation
-* pip install -e .[dev]
+- **Github repository**: <https://github.com/dermatologist/dhti-elixir-template/>
+- **Documentation** <https://dermatologist.github.io/dhti-elixir-template/>
 
-## Testing Environment Setup
+## Getting started with your project
 
-Override [`tests/bootstrap.py`](tests/bootstrap.py) with your own configuration.
+### 1. Create a New Repository
 
-## Usage
+First, create a repository on GitHub with the same name as this project, and then run the following commands:
 
-To use this package, you should first have the LangChain CLI installed:
-
-```shell
-pip install -U langchain-cli
+```bash
+git init -b main
+git add .
+git commit -m "init commit"
+git remote add origin git@github.com:dermatologist/dhti-elixir-template.git
+git push -u origin main
 ```
 
-If you want to add this to an existing project, you can just run:
+### 2. Set Up Your Development Environment
 
-```shell
-langchain app add --repo https://github.com/dermatologist/dhti-elixir-template --branch develop
+Then, install the environment and the pre-commit hooks with
+
+```bash
+make install
 ```
 
-And add the following code to your `server.py` file after [bootstrapping](tests/bootstrap.py):
-```python
+This will also generate your `uv.lock` file
 
-from dhti_elixir_template.chain import chain as dhti_elixir_template_chain
+### 3. Run the pre-commit hooks
 
-add_routes(app, dhti_elixir_template_chain, path="/dhti-elixir-template")
+Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+
+```bash
+uv run pre-commit run -a
 ```
 
-If you are inside this directory, then you can spin up a LangServe instance directly by:
+### 4. Commit the changes
 
-```shell
-langchain serve
+Lastly, commit the changes made by the two steps above to your repository.
+
+```bash
+git add .
+git commit -m 'Fix formatting issues'
+git push origin main
 ```
 
-This will start the FastAPI app with a server is running locally at
-[http://localhost:8000](http://localhost:8000)
+You are now ready to start development on your project!
+The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
 
-We can see all templates at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-We can access the playground at [http://127.0.0.1:8000/dhti-elixir-template/playground](http://127.0.0.1:8000/dhti-elixir-template/playground)
+To finalize the set-up for publishing to PyPI, see [here](https://dermatologist.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
+For activating the automatic documentation with MkDocs, see [here](https://dermatologist.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
+To enable the code coverage reports, see [here](https://dermatologist.github.io/cookiecutter-uv/features/codecov/).
 
-We can access the template from code with:
+## Releasing a new version
 
-```python
-from langserve.client import RemoteRunnable
+- Create an API Token on [PyPI](https://pypi.org/).
+- Add the API Token to your projects secrets with the name `PYPI_TOKEN` by visiting [this page](https://github.com/dermatologist/dhti-elixir-template/settings/secrets/actions/new).
+- Create a [new release](https://github.com/dermatologist/dhti-elixir-template/releases/new) on Github.
+- Create a new tag in the form `*.*.*`.
 
-runnable = RemoteRunnable("http://localhost:8000/dhti-elixir-template")
-```
+For more details, see [here](https://dermatologist.github.io/cookiecutter-uv/features/cicd/#how-to-trigger-a-release).
+
+---
+
+Repository initiated with [dermatologist/cookiecutter-uv](https://github.com/dermatologist/cookiecutter-uv).
