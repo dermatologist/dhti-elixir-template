@@ -1,129 +1,154 @@
-[build-system]
-requires = ["setuptools", "wheel", "pip"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "dhti-elixir-template"
+dynamic = ["version"]  # Remove static version and add this line
 description = "DHTI Elixir Template"
-authors = [{name = "dermatologist", email = "github@gulfdoctor.net"}]
-license = "MPL-2.0"
+authors = [{ name = "Bell Eapen", email = "github_public@gulfdoctor.net" }]
+readme = "README.md"
+keywords = ['python']
+requires-python = ">=3.10,<4.0"
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Programming Language :: Python",
-    "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Intended Audience :: Healthcare Industry",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Operating System :: OS Independent",
 ]
 dependencies = [
-    'importlib-metadata; python_version<"3.8"',
-    'dhti-elixir-base@ git+https://github.com/dermatologist/dhti-elixir-base',
+  "dhti-elixir-base"
 ]
-dynamic = ["version"]
-
-[project.readme]
-file = "README.md"
-content-type = "text/markdown; charset=UTF-8; variant=GFM"
-# Add here related links, for example:
 
 [project.urls]
-Homepage = "https://nuchange.ca"
-Documentation = "https://pyscaffold.org/"
-# Source = https://github.com/pyscaffold/pyscaffold/
-# Changelog = https://pyscaffold.org/en/latest/changelog.html
-# Tracker = https://github.com/pyscaffold/pyscaffold/issues
-# Conda-Forge = https://anaconda.org/conda-forge/pyscaffold
-# Download = https://pypi.org/project/PyScaffold/#files
-# Twitter = https://twitter.com/PyScaffold
-# Change if running only on Windows, Mac or Linux (comma-separated)
-# Add here all kinds of additional classifiers as defined under
-# https://pypi.org/classifiers/
+Homepage = "https://dermatologist.github.io/dhti-elixir-template/"
+Repository = "https://github.com/dermatologist/dhti-elixir-template"
+Documentation = "https://dermatologist.github.io/dhti-elixir-template/"
 
-[project.optional-dependencies]
-# Add here additional requirements for extra features, to install with:
-# `pip install dhti-elixir-template[PDF]` like:
-# PDF = ReportLab; RXP
-# Add here test requirements (semicolon/line-separated)
-testing = [
-    "setuptools",
-    "pytest",
-    "pytest-cov",
+[dependency-groups]
+dev = [
+    "pytest>=7.2.0",
+    "pre-commit>=2.20.0",
+    "tox-uv>=1.11.3",
+    "deptry>=0.23.0",
+    "mypy>=0.991",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.11.5",
+    "mkdocs>=1.4.2",
+    "mkdocs-material>=8.5.10",
+    "mkdocstrings[python]>=0.26.1",
 ]
 
-[project.entry-points]
-# Add here console scripts like:
-# console_scripts =
-# script_name = dhti_elixir_template.module:function
-# For example:
-# console_scripts =
-# fibonacci = dhti_elixir_template.skeleton:run
-# And any other entry points, for example:
-# pyscaffold.cli =
-# awesome = pyscaffoldext.awesome.extension:AwesomeExtension
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
 
-[tool.setuptools]
-zip-safe = false
-include-package-data = true
-package-dir = {"" = "src"}
-# Require a min/specific Python version (comma-separated conditions)
-# python_requires = >=3.8
-# Add here dependencies of your project (line-separated), e.g. requests>=2.2,<3.0.
-# Version specifiers like >=2.2,<3.0 avoid problems due to API changes in
-# new major versions. This works if the required packages follow Semantic Versioning.
-# For more information, check out https://semver.org/.
-platforms = ["any"]
-license-files = ["LICENSE.txt"]
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-exclude = ["tests"]
-namespaces = true
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
+
+[tool.uv-dynamic-versioning]
+fallback-version = "0.1.0"
+
+[tool.uv.build-backend]
+source-exclude = [
+  "tests/*",
+  "examples/*",
+  "docs/*",
+  "notes/*",
+  "notebooks/*"
+]
+
+#[project.scripts]
+#dhti-elixir-template = "dhti-elixir-template.main:cli"
+
+#[project.optional-dependencies]
+#llm = [ "llama-index", "llama-index-experimental", "langchain", "langchain-community", "langchain-huggingface", "llama-index-embeddings-langchain", "overrides", "llama-index-llms-google-genai",]
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dhti_elixir_template"]
+
+[tool.mypy]
+files = ["src"]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+show_error_codes = true
 
 [tool.pytest.ini_options]
-# Specify command line options as you would do when invoking pytest directly.
-# e.g. --cov-report html (or xml) for html/xml output or --junitxml junit.xml
-# in order to write a coverage file that can be read by Jenkins.
-# CAUTION: --cov flags may prohibit setting breakpoints while debugging.
-# Comment those flags to avoid this pytest issue.
 addopts = """
 --cov dhti_elixir_template --cov-report term-missing
---verbose"""
-norecursedirs = [
-    "dist",
-    "build",
-    ".tox",
-]
+--verbose
+"""
+norecursedirs = ["dist", "build", ".tox"]
 testpaths = ["tests"]
-# Use pytest markers to select/deselect specific tests
-# markers =
-# slow: mark tests as slow (deselect with '-m "not slow"')
-# system: mark end-to-end system tests
 
-[tool.devpi.upload]
-# Options for the devpi: PyPI server and packaging tool
-# VCS export must be deactivated since we are using setuptools-scm
-no_vcs = "1"
-formats = "bdist_wheel"
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+fix = true
 
-[tool.flake8]
-# Some sane defaults for the code style checker flake8
-max_line_length = "88"
-extend_ignore = "E203, W503"
-# ^  Black-compatible
-# E203 and W503 have edge cases handled by black
-exclude = """
-.tox
-build
-dist
-.eggs
-docs/conf.py"""
+[tool.ruff.lint]
+select = [
+    # flake8-2020
+    "YTT",
+    # flake8-bandit
+    "S",
+    # flake8-bugbear
+    "B",
+    # flake8-builtins
+    "A",
+    # flake8-comprehensions
+    "C4",
+    # flake8-debugger
+    "T10",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # mccabe
+    "C90",
+    # pycodestyle
+    "E", "W",
+    # pyflakes
+    "F",
+    # pygrep-hooks
+    "PGH",
+    # pyupgrade
+    "UP",
+    # ruff
+    "RUF",
+    # tryceratops
+    "TRY",
+]
+ignore = [
+    # LineTooLong
+    "E501",
+    # DoNotAssignLambda
+    "E731",
+]
 
-[tool.pyscaffold]
-# PyScaffold's parameters when the project was created.
-# This will be used when updating. Do not change!
-version = "4.6"
-package = "dhti_elixir_template"
-extensions = """
-markdown"""
-# This file is used to configure your project.
-# Read more about the various options under:
-# https://setuptools.pypa.io/en/latest/userguide/declarative_config.html
-# https://setuptools.pypa.io/en/latest/references/keywords.html
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.format]
+preview = true
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
