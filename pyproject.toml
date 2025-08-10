@@ -88,7 +88,7 @@ show_error_codes = true
 
 [tool.pytest.ini_options]
 addopts = """
---cov dhti_elixir_base --cov-report term-missing
+--cov dhti_elixir_template --cov-report term-missing
 --verbose
 """
 norecursedirs = ["dist", "build", ".tox"]
