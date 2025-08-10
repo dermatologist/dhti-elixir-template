@@ -53,3 +53,7 @@ MANIFEST
 .venv*/
 .conda*/
 uv.lock
+
+
+# mkdocs documentation
+/site

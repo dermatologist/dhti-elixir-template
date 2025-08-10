@@ -1,1 +1,1 @@
-::: dhti_elixir_template.foo
+::: dhti_elixir_template.chain
