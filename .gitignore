@@ -52,7 +52,7 @@ MANIFEST
 # Per-project virtualenvs
 .venv*/
 .conda*/
-uv.lock
+
 
 
 # mkdocs documentation
