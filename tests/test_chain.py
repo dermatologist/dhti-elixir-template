@@ -13,7 +13,7 @@ def test_chain(chain):
             "input": "Answer in one word: What is the capital of France?"
         }
         result = chain.invoke(input = input)
-        assert result == 'Paris'
+        assert result.model_dump().get("summary") == 'Paris'
     except (requests.exceptions.ConnectionError) as e:
         print("ConnectionError: Skipping test")
         assert True
