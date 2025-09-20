@@ -9,7 +9,7 @@ class TestChain(BaseChain):
     @property
     @override
     def chain(self): # type: ignore
-        _chain = RunnablePassthrough() | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() # type: ignore
+        _chain = RunnablePassthrough() | self.inputParser | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | self.outputCard # type: ignore
         chain = _chain.with_types(input_type=self.input_type)
         return chain
 
