@@ -23,16 +23,12 @@ def bootstrap():
                     "launch",
                     "patient/Patient.read",
                     "user/Practitioner.read",
-                    "patient/MedicationRequest.read",
-                    "patient/ServiceRequest.read",
                     "patient/CommunicationRequest.read",
                 ],
                 "metadata": {
                     "author": "MyOrg CDS Team",
                     "version": "1.0.0",
                     "supportedResources": [
-                        "MedicationRequest",
-                        "ServiceRequest",
                         "CommunicationRequest",
                     ],
                 },
