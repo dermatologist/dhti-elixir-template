@@ -11,7 +11,7 @@ def bootstrap():
     di["cds_hook_discovery"] = {
         "services": [
             {
-                "id": "my-org-order-service",
+                "id": "dhti-service",
                 "hook": "order-select",
                 "title": "MyOrg Order Assistant",
                 "description": "Provides suggestions and actions for selected draft orders, including handling CommunicationRequest resources.",

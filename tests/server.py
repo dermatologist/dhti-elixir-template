@@ -59,7 +59,7 @@ except:
     x = True
 
 
-@app.post("/langserve/dhti_elixir_template/dhti")
+@app.post("/langserve/dhti_elixir_template/cds-services/dhti-service")
 async def invoke_chain(payload: dict):
     _input = {}
     _input["input"] = {}
