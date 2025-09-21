@@ -47,11 +47,17 @@ except:
 
 @app.post("/langserve/dhti_elixir_template/dhti")
 async def invoke_chain(payload: dict):
-
     _input = {}
     _input["input"] = {}
     _input["input"]["input"] = payload
-    return dhti_elixir_template_chain(_input) # type: ignore
+    # return dhti_elixir_template_chain(_input) # type: ignore
+    # Call the route handler directly to ensure callbacks are used
+    from fastapi import Request
+    from fastapi.testclient import TestClient
+
+    client = TestClient(app)
+    response = client.post("/langserve/dhti_elixir_template/invoke", json=_input)
+    return response.json()["output"]
 
 
 # https://cds-hooks.org/specification/current/#discovery
