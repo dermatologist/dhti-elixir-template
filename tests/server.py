@@ -1,7 +1,7 @@
-import json
 from fastapi import FastAPI
 from langserve import add_routes
 from langchain_core.runnables.config import RunnableConfig
+from fastapi.testclient import TestClient
 from dhti_elixir_base import get_di
 
 # ! DO NOT REMOVE THE COMMENT BELOW
@@ -53,9 +53,6 @@ async def invoke_chain(payload: dict):
     _input["input"]["input"] = payload
     # return dhti_elixir_template_chain(_input) # type: ignore
     # Call the route handler directly to ensure callbacks are used
-    from fastapi import Request
-    from fastapi.testclient import TestClient
-
     client = TestClient(app)
     response = client.post("/langserve/dhti_elixir_template/invoke", json=_input)
     return response.json()["output"]
