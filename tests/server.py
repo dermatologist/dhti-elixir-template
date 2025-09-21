@@ -3,6 +3,7 @@ from langserve import add_routes
 from langchain_core.runnables.config import RunnableConfig
 from fastapi.testclient import TestClient
 from dhti_elixir_base import get_di
+from fastapi.middleware.cors import CORSMiddleware
 
 # ! DO NOT REMOVE THE COMMENT BELOW
 # DHTI_CLI_IMPORT
@@ -23,6 +24,18 @@ from bootstrap import bootstrap
 bootstrap()
 
 app = FastAPI(title="LangServe Launch Example")
+
+origins = [
+        "*",
+    ]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 try:
     from langfuse import Langfuse
