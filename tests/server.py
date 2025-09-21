@@ -68,10 +68,7 @@ async def invoke_chain(payload: dict):
     # Call the route handler directly to ensure callbacks are used
     client = TestClient(app)
     response = client.post("/langserve/dhti_elixir_template/invoke", json=_input)
-    cards = {
-        "cards": [response.json().get("output", {})]
-    }
-    return cards
+    return response.json()["output"]
 
 
 # https://cds-hooks.org/specification/current/#discovery
