@@ -1,0 +1,43 @@
+from fastapi import FastAPI
+from langserve import add_routes
+from langchain_core.runnables.config import RunnableConfig
+
+# ! DO NOT REMOVE THE COMMENT BELOW
+# DHTI_CLI_IMPORT
+from bootstrap import bootstrap as dhti_elixir_template_bootstrap
+
+dhti_elixir_template_bootstrap()
+from dhti_elixir_template.chain import chain as dhti_elixir_template_chain
+
+import uvicorn
+
+# Comes after elixir bootstraps, so can override elixir configurations
+from bootstrap import bootstrap
+
+bootstrap()
+
+app = FastAPI(title="LangServe Launch Example")
+
+try:
+    from langfuse import Langfuse
+    from langfuse.callback import CallbackHandler
+
+    langfuse_handler.auth_check()
+    langfuse_handler = CallbackHandler()
+    config = RunnableConfig(callbacks=[langfuse_handler])
+    # ! DO NOT REMOVE THE COMMENT BELOW
+    # DHTI_LANGFUSE_ROUTE
+    add_routes(
+        app,
+        dhti_elixir_template_chain.with_config(config),
+        path="/langserve/dhti_elixir_template",
+    )
+
+except:
+    # ! DO NOT REMOVE THE COMMENT BELOW
+    # DHTI_NORMAL_ROUTE
+    add_routes(app, dhti_elixir_template_chain, path="/langserve/dhti_elixir_template")
+    x = True
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8001)
