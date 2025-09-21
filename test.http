@@ -27,3 +27,7 @@ Content-Type: application/json
                 "context": {"input": "What is the capital of France?"},
                 "prefetch": {}
 }
+
+###
+
+GET http://localhost:8001/langserve/dhti_elixir_template/cds-services HTTP/1.1
