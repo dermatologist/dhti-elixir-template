@@ -1,50 +1,22 @@
 import logging
-from typing import Any
+from typing_extensions import override
 
 from dhti_elixir_base import BaseChain, get_di
-from dhti_elixir_base.cds_hook import CDSHookCard
+from dhti_elixir_base.cds_hook.generate_cards import add_card, get_card
+from dhti_elixir_base.cds_hook.request_parser import get_context
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.tools import tool
-from overrides import override
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TestChain(BaseChain):
 
-    def inputParser2(self, input: Any):
-            # Try to extract CommunicationRequest content if possible
-            try:
-                entries = input["input"].context["draftOrders"]["entry"]
-                communication_request = next(
-                    (entry for entry in entries if entry.get("resource", {}).get("resourceType") == "CommunicationRequest"),
-                    None,
-                )
-                if communication_request:
-                    content = communication_request["resource"]["payload"][0]["contentString"]
-                    logger.info(f"Extracted content: {content}")
-                    return {"input": content}
-            except Exception as e:
-                logger.info(f"inputParser2 fallback: {e}, input: {input}")
-
-            # Fallback: try to return input["input"] if possible
-            if isinstance(input, dict) and "context" in input:
-                logger.info(f"inputParser2 fallback: returning input['context']")
-                return input["context"]
-
-            # Final fallback: return input as is
-            logger.info(f"inputParser2 final fallback: returning input as is")
-            return input
-
-    def outputCard2(self, text: str) -> dict:
-        cards = {"cards": [CDSHookCard(summary=text)]}
-        return cards
-
     @property
     @override
     def chain(self): # type: ignore
-        _chain = RunnablePassthrough() | self.inputParser2 | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | self.outputCard2 # type: ignore
+        _chain = RunnablePassthrough() | get_context | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | get_card # type: ignore
         chain = _chain.with_types(input_type=self.input_type)
         return chain
 
