@@ -50,17 +50,17 @@ try:
         dhti_elixir_template_chain.with_config(config),
         path="/langserve/dhti_elixir_template",
     )
-    add_invokes(app, path="/langserve/dhti_elixir_template")
-    add_services(app, path="/langserve/dhti_elixir_template")
 
 except:
     # ! DO NOT REMOVE THE COMMENT BELOW
     # DHTI_NORMAL_ROUTE
     add_routes(app, dhti_elixir_template_chain, path="/langserve/dhti_elixir_template")
-    add_invokes(app, path="/langserve/dhti_elixir_template")
-    add_services(app, path="/langserve/dhti_elixir_template")
     x = True
 
+# ! DO NOT REMOVE THE COMMENT BELOW
+# DHTI_COMMON_ROUTE
+add_invokes(app, path="/langserve/dhti_elixir_template")
+add_services(app, path="/langserve/dhti_elixir_template")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)
