@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "dhti": {
+      "type": "sse",
+      "url": "http://localhost:8001/langserve/mcp/sse"
+    }
+  }
+}
