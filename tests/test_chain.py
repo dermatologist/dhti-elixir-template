@@ -4,8 +4,8 @@ import requests
 
 @pytest.fixture
 def chain():
-    from src.dhti_elixir_template import TestChain
-    return TestChain().get_chain_as_langchain_tool()
+    from src.dhti_elixir_template import DhtiChain
+    return DhtiChain().get_chain_as_langchain_tool()
 
 
 def test_chain_invoke(chain, capsys):

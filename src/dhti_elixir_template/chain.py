@@ -11,7 +11,7 @@ from langchain.tools import tool
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class TestChain(BaseChain):
+class DhtiChain(BaseChain):
     pass
     # @property
     # @override

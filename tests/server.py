@@ -14,9 +14,9 @@ dhti_elixir_template_bootstrap()
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
-from dhti_elixir_template.chain import TestChain
-dhti_elixir_template_chain = TestChain().get_chain_as_langchain_tool()
-dhti_elixir_template_mcp_tool = TestChain().get_chain_as_mcp_tool
+from dhti_elixir_template.chain import DhtiChain as dhti_elixir_template_chain_class
+dhti_elixir_template_chain = dhti_elixir_template_chain_class().get_chain_as_langchain_tool()
+dhti_elixir_template_mcp_tool = dhti_elixir_template_chain_class().get_chain_as_mcp_tool
 
 import uvicorn
 
