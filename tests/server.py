@@ -3,6 +3,7 @@ from langserve import add_routes
 from langchain_core.runnables.config import RunnableConfig
 from dhti_elixir_base.cds_hook.routes import add_services, add_invokes
 from fastapi.middleware.cors import CORSMiddleware
+from mcp.server.fastmcp import FastMCP
 
 # ! DO NOT REMOVE THE COMMENT BELOW
 # DHTI_CLI_IMPORT
@@ -15,6 +16,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 from dhti_elixir_template.chain import TestChain
 dhti_elixir_template_chain = TestChain().get_chain_as_langchain_tool()
+dhti_elixir_template_mcp_tool = TestChain().get_chain_as_mcp_tool
 
 import uvicorn
 
@@ -23,7 +25,14 @@ from bootstrap import bootstrap
 
 bootstrap()
 
-app = FastAPI(title="LangServe Launch Example")
+# 1. Define your MCP server
+mcp_server = FastMCP(name="dhti-mcp-server")
+mcp_server.add_tool(dhti_elixir_template_mcp_tool) # type: ignore
+
+
+app = FastAPI(title="dhti-elixir-server")
+# Mount the MCP server's ASGI application at a specific path (Exposes /messages and /sse endpoints)
+app.mount("/langserve/mcp", mcp_server.sse_app())
 
 origins = [
         "*",
@@ -36,6 +45,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Define a root endpoint
+@app.get("/langserve")
+async def read_root():
+    return {"message": "Hello from DHTI!"}
+
+
 
 try:
     from langfuse import Langfuse
