@@ -5,7 +5,7 @@ import requests
 @pytest.fixture
 def chain():
     from src.dhti_elixir_template import TestChain
-    return TestChain().chain
+    return TestChain().get_chain_as_langchain_tool()
 
 
 def test_chain_invoke(chain, capsys):
@@ -17,14 +17,14 @@ def test_chain_invoke(chain, capsys):
 
 
 def test_chain_invoke_with_hook(chain, capsys):
-    input_data = {
+    input_data = {"input":{
         "hookInstance": "test_hook",
         "fhirServer": "http://example.com/fhir",
         "fhirAuthorization": "Bearer test_token",
         "hook": "patient-view",
         "context": {"input": "Hello"},
         "prefetch": {},
-    }
+    }}
     result = chain.invoke(input=input_data)  # type: ignore
     print(result)
     captured = capsys.readouterr()

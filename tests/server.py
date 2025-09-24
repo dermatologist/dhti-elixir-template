@@ -13,7 +13,8 @@ dhti_elixir_template_bootstrap()
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
-from dhti_elixir_template.chain import chain as dhti_elixir_template_chain
+from dhti_elixir_template.chain import TestChain
+dhti_elixir_template_chain = TestChain().get_chain_as_langchain_tool()
 
 import uvicorn
 
