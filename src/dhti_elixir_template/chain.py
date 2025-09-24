@@ -12,11 +12,11 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class DhtiChain(BaseChain):
-    pass
-    # @property
-    # @override
-    # def chain(self): # type: ignore
-    #     _chain = RunnablePassthrough() | get_context | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | get_card # type: ignore
-    #     chain = _chain.with_types(input_type=self.input_type)
-    #     return chain
+    
+    @property
+    @override
+    def chain(self): # type: ignore
+        _chain = RunnablePassthrough() | get_context | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | get_card # type: ignore
+        chain = _chain.with_types(input_type=self.input_type)
+        return chain
 
