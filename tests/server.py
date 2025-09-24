@@ -4,6 +4,7 @@ from langchain_core.runnables.config import RunnableConfig
 from dhti_elixir_base.cds_hook.routes import add_services, add_invokes
 from fastapi.middleware.cors import CORSMiddleware
 from mcp.server.fastmcp import FastMCP
+mcp_server = FastMCP(name="dhti-mcp-server")
 
 # ! DO NOT REMOVE THE COMMENT BELOW
 # DHTI_CLI_IMPORT
@@ -17,6 +18,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 from dhti_elixir_template.chain import DhtiChain as dhti_elixir_template_chain_class
 dhti_elixir_template_chain = dhti_elixir_template_chain_class().get_chain_as_langchain_tool()
 dhti_elixir_template_mcp_tool = dhti_elixir_template_chain_class().get_chain_as_mcp_tool
+# 1. Define your MCP server
+mcp_server.add_tool(dhti_elixir_template_mcp_tool)  # type: ignore
 
 import uvicorn
 
@@ -24,10 +27,6 @@ import uvicorn
 from bootstrap import bootstrap
 
 bootstrap()
-
-# 1. Define your MCP server
-mcp_server = FastMCP(name="dhti-mcp-server")
-mcp_server.add_tool(dhti_elixir_template_mcp_tool) # type: ignore
 
 
 app = FastAPI(title="dhti-elixir-server")
@@ -50,7 +49,6 @@ app.add_middleware(
 @app.get("/langserve")
 async def read_root():
     return {"message": "Hello from DHTI!"}
-
 
 
 try:
