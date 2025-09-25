@@ -70,7 +70,7 @@ Content-Type: application/json
                             "subject": {"reference": "Patient/48596990"},
                             "payload": [
                                 {
-                                    "contentString": "Hello is this doing this doing man? Hello? predict this face this too,by the way gh"
+                                    "contentString": "Hello world!"
                                 }
                             ],
                             "priority": "routine",
