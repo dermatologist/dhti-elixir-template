@@ -19,7 +19,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "dhti-elixir-base @ git+https://github.com/dermatologist/dhti-elixir-base.git"
+  "dhti-elixir-base @ git+https://github.com/dermatologist/dhti-elixir-base.git",
 ]
 
 [project.urls]

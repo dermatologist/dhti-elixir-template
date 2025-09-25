@@ -13,7 +13,7 @@ Create template by using the [cookiecutter template](https://github.com/dermatol
 ## Running the server for testing
 
 ```bash
-uv run python tests/server.py
+python tests/server.py
 ```
 
 ## Routes (Name `dhti_elixir_template` should be replaced with your elixir name)
