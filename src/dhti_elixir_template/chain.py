@@ -20,10 +20,14 @@ class DhtiChain(BaseChain):
         return message
 
     def fhir_path_process(self, context: str):
-        return str(DhtiFhirSearch().get_conditions_for_patient(
-                context,
-                fhirpath="Bundle.entry.resource.ofType(Condition).code.coding.code.first()", # Get first condition code
-            ))
+        try:
+            return str(DhtiFhirSearch().get_conditions_for_patient(
+                    context,
+                    fhirpath="Bundle.entry.resource.ofType(Condition).code.coding.code.first()", # Get first condition code
+                ))
+        except Exception as e:
+            self.print_log(f"Error in fhir_path_process: {e}")
+            return "Demo working, but FHIR search failed."
 
     @property
     @override
@@ -37,4 +41,4 @@ class DhtiChain(BaseChain):
         )
         # Run both in parallel using RunnableParallel
         runnable = RunnableParallel(first=_chain, second=_fhir)
-        return runnable.with_types(input_type=self.input_type)
+        return _chain.with_types(input_type=self.input_type)
