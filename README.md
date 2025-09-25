@@ -1,74 +1,42 @@
-# dhti-elixir-template
+# dhti-elixir-template for [DHTI](https://github.com/dermatologist/dhti)
 
 [![Release](https://img.shields.io/github/v/release/dermatologist/dhti-elixir-template)](https://img.shields.io/github/v/release/dermatologist/dhti-elixir-template)
-[![Build status](https://img.shields.io/github/actions/workflow/status/dermatologist/dhti-elixir-template/main.yml?branch=main)](https://github.com/dermatologist/dhti-elixir-template/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/dermatologist/dhti-elixir-template/branch/main/graph/badge.svg)](https://codecov.io/gh/dermatologist/dhti-elixir-template)
+[![Build status](https://img.shields.io/github/actions/workflow/status/dermatologist/dhti-elixir-template/pytest.yml?branch=develop)](https://github.com/dermatologist/dhti-elixir-template/actions/workflows/pytest.yml?query=branch%3Adevelop)
+[![codecov](https://codecov.io/gh/dermatologist/dhti-elixir-template/branch/develop/graph/badge.svg)](https://codecov.io/gh/dermatologist/dhti-elixir-template)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/dermatologist/dhti-elixir-template)](https://img.shields.io/github/commit-activity/m/dermatologist/dhti-elixir-template)
 [![License](https://img.shields.io/github/license/dermatologist/dhti-elixir-template)](https://img.shields.io/github/license/dermatologist/dhti-elixir-template)
 
-This is a template repository for Python projects that use uv for their dependency management.
+This is a template repository for [DHTI Elixirs](https://github.com/dermatologist/dhti)
 
-- **Github repository**: <https://github.com/dermatologist/dhti-elixir-template/>
-- **Documentation** <https://dermatologist.github.io/dhti-elixir-template/>
+Create template by using the [cookiecutter template](https://github.com/dermatologist/cookiecutter-uv)
 
-## Getting started with your project
-
-### 1. Create a New Repository
-
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+## Running the server for testing
 
 ```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:dermatologist/dhti-elixir-template.git
-git push -u origin main
+python tests/server.py
 ```
 
-### 2. Set Up Your Development Environment
+## Routes (Name `dhti_elixir_template` should be replaced with your elixir name)
 
-Then, install the environment and the pre-commit hooks with
+- `GET /langserve`: A simple root endpoint that returns a welcome message.
+- `GET /langserve/dhti_elixir_template/cds-services`: Endpoint to access CDS services discovery.
+- `POST /langserve/dhti_elixir_template/cds-services/dhti-service`: Endpoint to invoke services.
+- `POST /langserve/mcp/messages`: Endpoint for sending messages to the MCP server.
+- `GET /langserve/mcp/sse`: Endpoint for Server-Sent Events (SSE) to receive real-time updates.
+- `GET /langserve/mcp` : Base path for MCP server functionalities (for configuration of MCP client using SSE).
 
-```bash
-make install
-```
+## Testing
 
-This will also generate your `uv.lock` file
+Test using [cds-hooks sandbox](https://github.com/dermatologist/cds-hooks-sandbox). Use the endpoint to access CDS services discovery.
 
-### 3. Run the pre-commit hooks
+## How to use this template
 
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+- Write your code in `src/dhti_elixir_template/chain.py` (replace `dhti_elixir_template` with your elixir name) as DhtiChain class.
+- Follow the same (chain) pattern for agents as well.
 
-```bash
-uv run pre-commit run -a
-```
+## Give us a star ⭐️
+If you find this project useful, give us a star. It helps others discover the project.
 
-### 4. Commit the changes
+## Contributors
 
-Lastly, commit the changes made by the two steps above to your repository.
-
-```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
-```
-
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
-
-To finalize the set-up for publishing to PyPI, see [here](https://dermatologist.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://dermatologist.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://dermatologist.github.io/cookiecutter-uv/features/codecov/).
-
-## Releasing a new version
-
-- Create an API Token on [PyPI](https://pypi.org/).
-- Add the API Token to your projects secrets with the name `PYPI_TOKEN` by visiting [this page](https://github.com/dermatologist/dhti-elixir-template/settings/secrets/actions/new).
-- Create a [new release](https://github.com/dermatologist/dhti-elixir-template/releases/new) on Github.
-- Create a new tag in the form `*.*.*`.
-
-For more details, see [here](https://dermatologist.github.io/cookiecutter-uv/features/cicd/#how-to-trigger-a-release).
-
----
-
-Repository initiated with [dermatologist/cookiecutter-uv](https://github.com/dermatologist/cookiecutter-uv).
+* [Bell Eapen](https://nuchange.ca) | [![Twitter Follow](https://img.shields.io/twitter/follow/beapen?style=social)](https://twitter.com/beapen)

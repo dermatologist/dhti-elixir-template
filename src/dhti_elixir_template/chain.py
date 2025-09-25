@@ -1,28 +1,40 @@
+import logging
+from typing_extensions import override
+
 from dhti_elixir_base import BaseChain, get_di
-from overrides import override
+from dhti_elixir_base.cds_hook.generate_cards import add_card, get_card
+from dhti_elixir_base.cds_hook.request_parser import get_context
+from dhti_elixir_base.fhir.fhir_search import DhtiFhirSearch
 from langchain.schema.output_parser import StrOutputParser
-from langchain.schema.runnable import RunnablePassthrough
+from langchain.schema.runnable import RunnablePassthrough, RunnableParallel
 from langchain.tools import tool
 
-class TestChain(BaseChain):
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class DhtiChain(BaseChain):
+
+    def print_log(self, message):
+        logger.info(message)
+        print(message)
+        return message
+
+    def fhir_path_process(self, context: str):
+        return str(DhtiFhirSearch().get_conditions_for_patient(
+                context,
+                fhirpath="Bundle.entry.resource.ofType(Condition).code.coding.code.first()", # Get first condition code
+            ))
 
     @property
     @override
     def chain(self): # type: ignore
-        _chain = RunnablePassthrough() | self.inputParser | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | self.outputCard # type: ignore
-        chain = _chain.with_types(input_type=self.input_type)
-        return chain
-
-
-# Named chain according to the langchain template convention
-# The description is used by the agents
-# This is only in the inherited class, not in the base class
-@tool(TestChain().name or "test_chain", args_schema=TestChain().input_type)
-def chain(**kwargs):
-    """
-    This is a template chain that takes a text input and returns a summary of the text.
-
-    The input is a dict with the following mandatory keys:
-        input (str): The text to summarize.
-    """
-    return TestChain().chain.invoke(kwargs)
+        _chain = RunnablePassthrough() | get_context | get_di("template_main_prompt") | get_di("template_main_llm") | StrOutputParser() | get_card # type: ignore
+        _fhir = (
+            RunnablePassthrough()
+            | get_context
+            | self.fhir_path_process
+            | get_card
+        )
+        # Run both in parallel using RunnableParallel
+        runnable = RunnableParallel(first=_chain, second=_fhir)
+        return runnable.with_types(input_type=self.input_type)
