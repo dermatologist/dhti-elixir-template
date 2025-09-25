@@ -19,6 +19,12 @@ class DhtiChain(BaseChain):
         print(message)
         return message
 
+    def fhir_path_process(self, context: str):
+        return str(DhtiFhirSearch().get_conditions_for_patient(
+                context,
+                fhirpath="Bundle.entry.resource.ofType(Condition).code.coding.code.first()", # Get first condition code
+            ))
+
     @property
     @override
     def chain(self): # type: ignore
@@ -26,9 +32,8 @@ class DhtiChain(BaseChain):
         _fhir = (
             RunnablePassthrough()
             | get_context
-            | self.print_log
-            | DhtiFhirSearch().get_conditions_for_patient
-            | self.print_log
+            | self.fhir_path_process
+            | get_card
         )
         # Run both in parallel using RunnableParallel
         runnable = RunnableParallel(first=_chain, second=_fhir)
