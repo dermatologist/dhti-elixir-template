@@ -19,7 +19,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "dhti-elixir-base>=0.6.0",
+  "dhti-elixir-base>=0.7.0",
 ]
 
 [project.urls]
