@@ -543,7 +543,7 @@ wheels = [
 
 [[package]]
 name = "dhti-elixir-base"
-version = "0.7.0"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "agency" },
@@ -562,9 +562,9 @@ dependencies = [
     { name = "mcp" },
     { name = "python-dotenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/42/6b/ec2c2e9d632c664c5bdd569616d13ecdaba45dc2365e8065bbcb37b2560c/dhti_elixir_base-0.7.0.tar.gz", hash = "sha256:a4d776ed9c1b7dc3a83af5257e15a6d12b03964cf1290e7da88fbceb2cec190f", size = 227992, upload-time = "2025-10-23T18:21:58.465Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e7/41/db65113178af0aab186ff2d2f985a1c7b843c5dd6d07fdd117a7d6135853/dhti_elixir_base-0.8.0.tar.gz", hash = "sha256:0930decd35491b2e130092319586510e9562cedcb446744216a82f7c2f3e3d3a", size = 228657, upload-time = "2025-10-23T20:46:22.942Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/12/a1104fc7fdba88fbe2e0476f36a6f8f39be1ec3bc0b7f63aa9335167f580/dhti_elixir_base-0.7.0-py3-none-any.whl", hash = "sha256:0044376cae3f95703d793c359ea1afb81f4c1cffe3bff4a1f798970b94a855d3", size = 30231, upload-time = "2025-10-23T18:21:57.563Z" },
+    { url = "https://files.pythonhosted.org/packages/80/bc/43c079baf0f704dd9d696f264bbfe99d3b657be5e46ff3ddaddeab25c7bc/dhti_elixir_base-0.8.0-py3-none-any.whl", hash = "sha256:10e766f655f9c77c2f4c431c65ca1f1fc8131f6158dec7f5f4825f9a7ef9505a", size = 30847, upload-time = "2025-10-23T20:46:21.602Z" },
 ]
 
 [[package]]
@@ -589,7 +589,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "dhti-elixir-base", specifier = ">=0.7.0" }]
+requires-dist = [{ name = "dhti-elixir-base", specifier = ">=0.8.0" }]
 
 [package.metadata.requires-dev]
 dev = [
