@@ -14,7 +14,6 @@ def test_chain_invoke(chain, capsys):
     print(result)
 
 
-
 def test_chain_invoke_with_hook(chain, capsys):
     input_data = {"input":{
         "hookInstance": "test_hook",
@@ -28,6 +27,22 @@ def test_chain_invoke_with_hook(chain, capsys):
     print(result)
     # captured = capsys.readouterr()
     # assert "Paris" in captured.out or "know" in captured.out
+
+# This is how the openmrs-esm-dhti-template sends nested input
+def test_chain_with_nested_input(chain, capsys):
+    input_data = {
+        "input": {
+            "input": {
+                "context": {
+                    "input": "(Digital Health Tooling Interface)"
+                }
+            }
+        },
+        "config": {},
+        "kwargs": {},
+    }
+    result = chain.invoke(input=input_data)  # type: ignore
+    print(result)
 
 def test_chain_invoke_with_request(chain, capsys):
     input_data = {"input":{
