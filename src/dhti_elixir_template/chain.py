@@ -5,8 +5,8 @@ from dhti_elixir_base import BaseChain, get_di
 from dhti_elixir_base.cds_hook.generate_cards import add_card, get_card
 from dhti_elixir_base.cds_hook.request_parser import get_context
 from dhti_elixir_base.fhir.fhir_search import DhtiFhirSearch
-from langchain.schema.output_parser import StrOutputParser
-from langchain.schema.runnable import RunnablePassthrough, RunnableParallel
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 from langchain.tools import tool
 
 logging.basicConfig(level=logging.INFO)
