@@ -6,22 +6,22 @@ jobs:
   flake-update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v7
 
-    # https://docs.astral.sh/uv/concepts/projects/#upgrading-locked-package-versions
-    - run: uv lock --upgrade
+      # https://docs.astral.sh/uv/concepts/projects/#upgrading-locked-package-versions
+      - run: uv lock --upgrade
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v7
-      with:
-        title: "[Automated] Dependencies upgrade"
-        commit-message: "[Automated] Dependencies upgrade"
-        branch: "auto/uv-sync-upgrade"
-        add-paths: uv.lock
-        delete-branch: true
-        labels: |
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "[Automated] Dependencies upgrade"
+          commit-message: "[Automated] Dependencies upgrade"
+          branch: "auto/uv-sync-upgrade"
+          add-paths: uv.lock
+          delete-branch: true
+          labels: |
             automated pr
-        body-path: result
-        draft: true
+          body-path: result
+          draft: true
