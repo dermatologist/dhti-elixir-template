@@ -20,6 +20,7 @@ classifiers = [
 ]
 dependencies = [
   "dhti-elixir-base>=1.2.0",
+  "fhiry>=5.2.1",
 ]
 
 [project.urls]
