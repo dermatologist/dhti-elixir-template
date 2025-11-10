@@ -5,9 +5,9 @@
   <img src="https://github.com/dermatologist/openmrs-esm-dhti-template/blob/develop/notes/conch.jpg" />
 </p>
 
-This is a template repository for [DHTI Elixirs](https://github.com/dermatologist/dhti). It is a simple but functional EMR chatbot!* 👉 [Try it out today!](https://github.com/dermatologist/dhti/blob/feature/fix-copy-1/README.md#try-it-out)
+This [DHTI](https://github.com/dermatologist/dhti) elixir template is a simple but functional EMR chatbot too!* 👉 [Try it out today!](https://github.com/dermatologist/dhti/blob/feature/fix-copy-1/README.md#try-it-out)
 
-Create template by using the [cookiecutter](https://github.com/dermatologist/cookiecutter-uv)
+Create [DHTI](https://github.com/dermatologist/dhti) elixirs by using the [cookiecutter](https://github.com/dermatologist/cookiecutter-uv)
 
 ## Running the server for testing
 
