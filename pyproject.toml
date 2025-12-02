@@ -19,7 +19,6 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "dhti-elixir-base>=1.2.0",
   "fhiry>=5.2.1",
   "langchain-google-genai",
   "langchain-openai",
