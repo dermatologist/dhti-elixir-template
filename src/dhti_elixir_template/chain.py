@@ -47,8 +47,6 @@ class DhtiChain(BaseChain):
     def fhir_everything(self, context):
         try:
             _everything = DhtiFhirSearch().get_everything_for_patient(context)
-            # if context.get("input"):
-            #     return f"Given the following FHIR resources: {FlattenFhir(_everything).flattened}, Answer the following question in a complete sentence: {context['input']}."
             return str(FlattenFhir(_everything).flattened)
         except Exception as e:
             self.print_log(f"Error in fhir_everything: {e}")
@@ -100,9 +98,6 @@ class DhtiChain(BaseChain):
             query=_query,
         )
         _chain = (
-            # RunnablePassthrough()
-            # | get_context
-            # | self.fhir_everything
             _context
             | get_di("template_main_prompt")  # type: ignore
             | get_di("template_main_llm")  # type: ignore
