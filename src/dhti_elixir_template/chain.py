@@ -19,7 +19,6 @@ class DhtiChain(BaseChain):
             llm=get_di("function_llm"),  # type: ignore
         )
         self.my_agent = agent.get_agent_response
-        self.my_agent_has_tools = agent.has_tool()
         super().__init__()
 
     def print_log(self, message):
@@ -39,8 +38,6 @@ class DhtiChain(BaseChain):
     def fhir_everything(self, context):
         try:
             _everything = DhtiFhirSearch().get_everything_for_patient(context)
-            # if context.get("input"):
-            #     return f"Given the following FHIR resources: {FlattenFhir(_everything).flattened}, Answer the following question in a complete sentence: {context['input']}."
             return str(FlattenFhir(_everything).flattened)
         except Exception as e:
             self.print_log(f"Error in fhir_everything: {e}")
@@ -65,40 +62,12 @@ class DhtiChain(BaseChain):
     def chain(self):  # type: ignore
         _fhir_context = RunnablePassthrough() | get_context | self.fhir_everything
         _query = RunnablePassthrough() | get_context | self.get_question
-        _agent_response = (
-            RunnableParallel(
-                fhir_context=_fhir_context,
-                query=_query
-            )
+        _chain = (
+            RunnableParallel(fhir_context=_fhir_context, query=_query)
             | self.get_string_message_to_agent
             | self.my_agent
             | self.print_log
             | self.get_output
-            | StrOutputParser()
-        )
-        # Define the branch logic
-        agent_response = RunnableBranch(
-            # Condition 1: agent has tools
-            (
-                lambda x: self.my_agent_has_tools,
-                _agent_response,
-            ),
-            # else
-            RunnableLambda(self.get_no_agent_response),
-        )
-
-        _context = RunnablePassthrough.assign(
-            fhir_context=_fhir_context,
-            agent_response=agent_response,
-            query=_query,
-        )
-        _chain = (
-            # RunnablePassthrough()
-            # | get_context
-            # | self.fhir_everything
-            _context
-            | get_di("template_main_prompt")  # type: ignore
-            | get_di("template_main_llm")  # type: ignore
             | StrOutputParser()
             | get_card
         )
