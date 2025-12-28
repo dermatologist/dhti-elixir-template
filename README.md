@@ -5,9 +5,19 @@
   <img src="https://github.com/dermatologist/openmrs-esm-dhti-template/blob/develop/notes/conch.jpg" />
 </p>
 
-This [DHTI](https://github.com/dermatologist/dhti) elixir template is a simple but functional EMR chatbot too!* 👉 [Try it out today!](https://github.com/dermatologist/dhti/blob/feature/fix-copy-1/README.md#try-it-out)
+This [DHTI](https://github.com/dermatologist/dhti) elixir template is a simple but functional EMR chatbot too!* 👉 [Try it out today!](https://github.com/dermatologist/dhti/blob/feature/fix-copy-1/README.md#try-it-out). Create [DHTI](https://github.com/dermatologist/dhti) elixirs by using the [cookiecutter](https://github.com/dermatologist/cookiecutter-uv)
 
-Create [DHTI](https://github.com/dermatologist/dhti) elixirs by using the [cookiecutter](https://github.com/dermatologist/cookiecutter-uv)
+There are three branches available:
+* feature/chain-1: A simple chain example using Langchain. For beginners.
+* feature/agent-1: A simple agent example using Langchain. The MCP agent automatically detects available tools using MCPX (included in DHTI).
+* feature/agent-2: An advanced agent example using Langchain. The MCP agent automatically detects available tools using MCPX (included in DHTI) and uses a more advanced branching strategy with agent in the loop.
+
+### Installation into DHTI
+
+```
+npx dhti-cli elixir install -g https://github.com/dermatologist/dhti-elixir-template.git -n dhti-elixir-template -b <branch-name>
+```
+[Read more about DHTI elixirs here](https://github.com/dermatologist/dhti)
 
 ## Running the server for testing
 
