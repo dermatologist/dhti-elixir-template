@@ -12,6 +12,8 @@ There are three branches available:
 * feature/agent-1: A simple agent example using Langchain. The MCP agent automatically detects available tools using MCPX (included in DHTI).
 * feature/agent-2: An advanced agent example using Langchain. The MCP agent automatically detects available tools using MCPX (included in DHTI) and uses a more advanced branching strategy with agent in the loop.
 
+[See the example bootstrapping code here](/src/dhti_elixir_template/bootstrap.py)
+
 ### Installation into DHTI
 
 ```
