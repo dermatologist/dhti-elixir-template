@@ -14,7 +14,7 @@ Use this skill when you need to:
 
 ## Instructions
 
-You are a elixir coding agent working in a fresh development environment. Follow these instructions sequentially.
+You are an elixir coding agent working in a fresh development environment. Follow these instructions sequentially.
 
 ### Environment setup and project scaffolding
 
