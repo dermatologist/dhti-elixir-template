@@ -11,7 +11,7 @@ from langchain_core.prompts import PromptTemplate
 
 def bootstrap():
     di["fhir_access_token"] = "YWRtaW46QWRtaW4xMjM="  # admin:Admin123 in base64
-    di["fhir_base_url"] = "http://backend:8080/openmrs/ws/fhir2/R4"
+    di["fhir_base_url"] = os.environ.get("FHIR_BASE_URL", "http://backend:8080/openmrs/ws/fhir2/R4")
     # Check if google api key is set in the environment
     if os.environ.get("GOOGLE_API_KEY"):
         llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
