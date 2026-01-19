@@ -1,5 +1,6 @@
 # dhti-elixir-template for [DHTI](https://github.com/dermatologist/dhti)
 
+## Deprecated. Use the [new monorepo instead.](https://github.com/dermatologist/dhti-elixir)
 
 <p align="center">
   <img src="https://github.com/dermatologist/openmrs-esm-dhti-template/blob/develop/notes/conch.jpg" />
