@@ -43,8 +43,36 @@ Test using [cds-hooks sandbox](https://github.com/dermatologist/cds-hooks-sandbo
 
 ## How to use this template
 
+### Manual Usage
+
 - Write your code in `src/dhti_elixir_template/chain.py` (replace `dhti_elixir_template` with your elixir name) as DhtiChain class.
 - Follow the same (chain) pattern for agents as well.
+
+### Using AI Agent Skills
+
+This repository includes AI agent skills that can automatically generate new DHTI elixir projects from this template. The skills are available in two locations for compatibility:
+
+- **Preferred location**: `.github/skills/elixir-generator/`
+- **Legacy location**: `.claude/skills/elixir-generator/`
+
+**To use the agent skill:**
+
+1. Provide your elixir requirements to an AI agent with access to these skills
+2. The agent will automatically:
+   - Set up the development environment
+   - Scaffold a new project using cookiecutter
+   - Implement your requested functionality with FHIR integration
+   - Create tests and documentation
+   - Follow DHTI architectural patterns
+
+**Example request:**
+```
+Please create a DHTI elixir that monitors blood glucose and HbA1c levels 
+for diabetes patients over the last 6 months and provides clinical recommendations.
+Project name: dhti-elixir-glycemic
+```
+
+See [examples](.github/skills/elixir-generator/examples/) for more detailed request templates.
 
 ## Give us a star ⭐️
 If you find this project useful, give us a star. It helps others discover the project.
